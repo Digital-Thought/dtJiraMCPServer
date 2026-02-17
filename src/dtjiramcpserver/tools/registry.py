@@ -30,6 +30,9 @@ TOOL_PACKAGES = [
     "dtjiramcpserver.tools.knowledgebase",
     "dtjiramcpserver.tools.sla",
     "dtjiramcpserver.tools.assets",
+    "dtjiramcpserver.tools.projects",
+    "dtjiramcpserver.tools.lookup",
+    "dtjiramcpserver.tools.groups",
 ]
 
 
@@ -44,10 +47,17 @@ class ToolRegistry:
         self,
         platform_client: Any = None,
         jsm_client: Any = None,
+        read_only: bool = False,
     ) -> None:
         self._platform_client = platform_client
         self._jsm_client = jsm_client
+        self._read_only = read_only
         self._tools: dict[str, BaseTool] = {}
+
+    @property
+    def read_only(self) -> bool:
+        """Return whether the registry is in read-only mode."""
+        return self._read_only
 
     def discover_and_register(self) -> None:
         """Scan TOOL_PACKAGES for BaseTool subclasses and register them.
@@ -76,6 +86,13 @@ class ToolRegistry:
 
     def _register_tool_class(self, tool_cls: type[BaseTool]) -> None:
         """Instantiate and register a single tool class."""
+        if self._read_only and getattr(tool_cls, "mutates", False):
+            logger.info(
+                "Skipping mutating tool '%s' (read-only mode)",
+                getattr(tool_cls, "name", "unknown"),
+            )
+            return
+
         tool = tool_cls(
             platform_client=self._platform_client,
             jsm_client=self._jsm_client,

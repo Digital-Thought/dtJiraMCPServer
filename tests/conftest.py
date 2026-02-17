@@ -9,6 +9,12 @@ import pytest
 from dtjiramcpserver.config.models import AppConfig, JiraConfig, ServerConfig
 from dtjiramcpserver.tools.registry import ToolRegistry
 
+# Central constant: update here when tools are added/removed.
+# meta (2) + issues (7) + servicedesk (10) + requesttypes (6) + fields (10)
+# + workflows (8) + kb (1) + sla (2) + assets (1) + projects (5) + lookup (3)
+# + groups (6) = 61
+EXPECTED_TOOL_COUNT = 61
+
 
 @pytest.fixture
 def sample_jira_config() -> JiraConfig:

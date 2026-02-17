@@ -272,6 +272,7 @@ class RequestTypeCreateTool(BaseTool):
     name = "requesttype_create"
     category = "requesttypes"
     description = "Create a new request type in a service desk"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {
@@ -423,6 +424,7 @@ class RequestTypeDeleteTool(BaseTool):
     name = "requesttype_delete"
     category = "requesttypes"
     description = "Delete a request type from a service desk"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

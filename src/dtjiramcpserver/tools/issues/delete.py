@@ -26,6 +26,7 @@ class IssueDeleteTool(BaseTool):
     name = "issue_delete"
     category = "issues"
     description = "Delete a Jira issue by its key"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

@@ -100,6 +100,7 @@ class IssueTransitionTool(BaseTool):
     name = "issue_transition"
     category = "issues"
     description = "Move an issue to a new workflow state via transition"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

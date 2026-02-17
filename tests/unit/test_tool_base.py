@@ -81,6 +81,24 @@ class TestToolResult:
         assert dumped["data"] == {"items": [1, 2, 3]}
 
 
+class TestBaseToolAttributes:
+    """Tests for BaseTool class attributes."""
+
+    def test_mutates_defaults_false(self) -> None:
+        """BaseTool.mutates defaults to False."""
+        tool = DummyTool()
+        assert tool.mutates is False
+
+    def test_mutates_can_be_overridden(self) -> None:
+        """Subclasses can set mutates=True."""
+
+        class MutatingDummy(DummyTool):
+            mutates = True
+
+        tool = MutatingDummy()
+        assert tool.mutates is True
+
+
 class TestBaseTool:
     """Tests for BaseTool safe_execute behaviour."""
 

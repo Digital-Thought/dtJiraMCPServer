@@ -5,6 +5,7 @@ from .validators import (
     validate_integer,
     validate_issue_key,
     validate_pagination,
+    validate_project_key,
     validate_required,
     validate_string,
 )
@@ -14,6 +15,7 @@ __all__ = [
     "validate_integer",
     "validate_issue_key",
     "validate_pagination",
+    "validate_project_key",
     "validate_required",
     "validate_string",
 ]

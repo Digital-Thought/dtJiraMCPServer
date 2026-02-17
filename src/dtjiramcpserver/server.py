@@ -66,8 +66,13 @@ async def _server_lifespan(server: Server) -> AsyncIterator[dict[str, Any]]:
     registry = ToolRegistry(
         platform_client=platform_client,
         jsm_client=jsm_client,
+        read_only=config.jira.read_only,
     )
     registry.discover_and_register()
+
+    if config.jira.read_only:
+        logger.info("Read-only mode enabled: mutating tools excluded")
+
     logger.info("Tool registry populated with %d tools", registry.tool_count)
 
     _registry = registry

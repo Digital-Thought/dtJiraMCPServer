@@ -26,6 +26,7 @@ class IssueCreateTool(BaseTool):
     name = "issue_create"
     category = "issues"
     description = "Create a new issue in a Jira project"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

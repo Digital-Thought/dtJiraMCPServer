@@ -164,6 +164,7 @@ class ServiceDeskAddCustomersTool(BaseTool):
     name = "servicedesk_add_customers"
     category = "servicedesk"
     description = "Add customers to a service desk by account IDs"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {
@@ -269,6 +270,7 @@ class ServiceDeskRemoveCustomersTool(BaseTool):
     name = "servicedesk_remove_customers"
     category = "servicedesk"
     description = "Remove customers from a service desk by account IDs"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

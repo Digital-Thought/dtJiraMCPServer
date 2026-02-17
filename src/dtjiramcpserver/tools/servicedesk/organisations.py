@@ -142,6 +142,7 @@ class ServiceDeskAddOrganisationTool(BaseTool):
     name = "servicedesk_add_organisation"
     category = "servicedesk"
     description = "Add an organisation to a service desk"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {
@@ -237,6 +238,7 @@ class ServiceDeskRemoveOrganisationTool(BaseTool):
     name = "servicedesk_remove_organisation"
     category = "servicedesk"
     description = "Remove an organisation from a service desk"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

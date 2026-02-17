@@ -220,6 +220,7 @@ class WorkflowCreateTool(BaseTool):
     name = "workflow_create"
     category = "workflows"
     description = "Create a new Jira workflow"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

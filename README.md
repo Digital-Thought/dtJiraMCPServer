@@ -4,11 +4,12 @@ MCP Server for Jira Cloud and JSM Cloud administration via natural language.
 
 ## Overview
 
-dtJiraMCPServer provides a [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) server that bridges LLM clients (such as Claude Desktop or Claude Code) with Atlassian Jira Cloud and Jira Service Management (JSM) Cloud REST APIs. The server exposes 47 tools across 9 categories, enabling an LLM to perform administrative and operational tasks across both platforms.
+dtJiraMCPServer provides a [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) server that bridges LLM clients (such as Claude Desktop or Claude Code) with Atlassian Jira Cloud and Jira Service Management (JSM) Cloud REST APIs. The server exposes 61 tools across 12 categories, enabling an LLM to perform administrative and operational tasks across both platforms.
 
 ## Features
 
-- **47 tools** across 9 feature areas
+- **61 tools** across 12 feature areas
+- **Read-only mode** - restrict to non-mutating tools via `JIRA_READ_ONLY`
 - **Self-documenting** - LLMs can discover tools and read usage guides at runtime
 - **Robust error handling** - structured errors with retry, rate limiting, and backoff
 - **Input validation** - validates parameters before making API calls
@@ -28,6 +29,9 @@ dtJiraMCPServer provides a [Model Context Protocol](https://modelcontextprotocol
 | Knowledge Base | 1 | Article search |
 | SLA | 2 | SLA metrics and detail |
 | Assets | 1 | Workspace queries |
+| Projects | 5 | Project CRUD operations |
+| Lookup | 3 | Issue types, priorities, user search |
+| Groups | 6 | Group CRUD, membership management |
 
 See [docs/tool-reference.md](docs/tool-reference.md) for the complete tool listing.
 
@@ -74,6 +78,7 @@ See [docs/installation.md](docs/installation.md) for detailed setup instructions
 | `JIRA_INSTANCE_URL` | Atlassian Cloud instance URL | Yes | - |
 | `JIRA_USER_EMAIL` | Atlassian account email | Yes | - |
 | `JIRA_API_TOKEN` | Atlassian API token | Yes | - |
+| `JIRA_READ_ONLY` | Restrict to read-only tools (true/1/yes) | No | `false` |
 | `LOG_LEVEL` | Application log level | No | `INFO` |
 
 ## MCP Client Configuration

@@ -8,6 +8,7 @@ from unittest.mock import AsyncMock
 import pytest
 
 from dtjiramcpserver.exceptions import InputValidationError, NotFoundError
+from tests.conftest import EXPECTED_TOOL_COUNT
 from dtjiramcpserver.tools.issues.create import IssueCreateTool
 from dtjiramcpserver.tools.issues.delete import IssueDeleteTool
 from dtjiramcpserver.tools.issues.get import IssueGetTool
@@ -607,5 +608,4 @@ class TestIssueToolRegistration:
 
         registry = ToolRegistry()
         registry.discover_and_register()
-        # meta (2) + issues (7) + servicedesk (10) + requesttypes (6) + fields (10) + workflows (8) + kb (1) + sla (2) + assets (1) = 47
-        assert registry.tool_count == 47
+        assert registry.tool_count == EXPECTED_TOOL_COUNT

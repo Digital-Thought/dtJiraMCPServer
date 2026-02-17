@@ -8,6 +8,7 @@ from unittest.mock import AsyncMock
 import pytest
 
 from dtjiramcpserver.client.pagination import PaginatedResponse
+from tests.conftest import EXPECTED_TOOL_COUNT
 from dtjiramcpserver.exceptions import InputValidationError
 from dtjiramcpserver.tools.servicedesk.customers import (
     ServiceDeskAddCustomersTool,
@@ -568,5 +569,4 @@ class TestServiceDeskToolRegistration:
         self, tool_registry: Any
     ) -> None:
         """Total tool count includes service desk tools."""
-        # meta (2) + issues (7) + servicedesk (10) = 19
-        assert tool_registry.tool_count == 47
+        assert tool_registry.tool_count == EXPECTED_TOOL_COUNT

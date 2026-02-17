@@ -8,6 +8,7 @@ import pytest
 
 from dtjiramcpserver.exceptions import ToolNotFoundError
 from dtjiramcpserver.tools.registry import ToolRegistry
+from tests.conftest import EXPECTED_TOOL_COUNT
 
 
 class TestToolRegistry:
@@ -22,8 +23,7 @@ class TestToolRegistry:
         """Empty stub packages do not cause errors."""
         registry = ToolRegistry()
         registry.discover_and_register()
-        # meta (2) + issues (7) + servicedesk (10) + requesttypes (6) + fields (10) + workflows (8) + kb (1) + sla (2) + assets (1) = 47
-        assert registry.tool_count == 47
+        assert registry.tool_count == EXPECTED_TOOL_COUNT
 
     def test_list_tools_returns_mcp_types(self, tool_registry: ToolRegistry) -> None:
         """list_tools returns MCP Tool objects."""
@@ -68,4 +68,4 @@ class TestToolRegistry:
 
     def test_tool_count(self, tool_registry: ToolRegistry) -> None:
         """tool_count returns correct number."""
-        assert tool_registry.tool_count == 47
+        assert tool_registry.tool_count == EXPECTED_TOOL_COUNT

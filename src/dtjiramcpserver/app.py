@@ -100,11 +100,15 @@ class JiraMCPServerApp(AbstractApp):
             KeyError: If a required environment variable is missing.
             ValueError: If a value fails Pydantic validation.
         """
+        read_only_str = os.environ.get("JIRA_READ_ONLY", "false").strip().lower()
+        read_only = read_only_str in ("true", "1", "yes")
+
         return AppConfig(
             jira=JiraConfig(
                 instance_url=os.environ["JIRA_INSTANCE_URL"],
                 user_email=os.environ["JIRA_USER_EMAIL"],
                 api_token=os.environ["JIRA_API_TOKEN"],
+                read_only=read_only,
             ),
             server=ServerConfig(
                 log_level=os.environ.get("LOG_LEVEL", "INFO"),

@@ -1,6 +1,6 @@
 # Tool Reference
 
-Complete reference for all 47 tools provided by dtJiraMCPServer. For detailed parameter documentation, use the `get_tool_guide` tool at runtime.
+Complete reference for all 61 tools provided by dtJiraMCPServer. For detailed parameter documentation, use the `get_tool_guide` tool at runtime.
 
 ## Meta Tools
 
@@ -364,3 +364,113 @@ List available Assets workspace IDs.
 
 - **Parameters**: None
 - **API**: `GET /rest/servicedeskapi/assets/workspace`
+
+---
+
+## Project Management
+
+### project_list
+
+List all Jira projects with optional filtering.
+
+- **Parameters**: `query` (string), `type_key` (string: "software", "service_desk", "business"), `expand` (array), `start`, `limit`
+- **API**: `GET /rest/api/3/project/search`
+
+### project_get
+
+Get full details of a Jira project.
+
+- **Parameters**: `project_key` (string, required), `expand` (array)
+- **API**: `GET /rest/api/3/project/{projectIdOrKey}`
+
+### project_create
+
+Create a new Jira project. *Mutating.*
+
+- **Parameters**: `key`, `name`, `project_type_key`, `lead_account_id` (all required), `description`, `assignee_type`, `project_template_key`
+- **API**: `POST /rest/api/3/project`
+
+### project_update
+
+Update fields on an existing project. *Mutating.*
+
+- **Parameters**: `project_key` (string, required), `name`, `description`, `lead_account_id`, `assignee_type`, `url`
+- **API**: `PUT /rest/api/3/project/{projectIdOrKey}`
+
+### project_delete
+
+Delete a Jira project. *Mutating.*
+
+- **Parameters**: `project_key` (string, required), `enable_undo` (boolean, default: true)
+- **API**: `DELETE /rest/api/3/project/{projectIdOrKey}`
+
+---
+
+## Lookup
+
+### issue_type_list
+
+List all available issue types.
+
+- **Parameters**: None
+- **API**: `GET /rest/api/3/issuetype` (returns flat array, no pagination)
+
+### priority_list
+
+List all available priorities.
+
+- **Parameters**: `start`, `limit`
+- **API**: `GET /rest/api/3/priority/search`
+
+### user_search
+
+Search for Jira users by name or email.
+
+- **Parameters**: `query` (string, required), `start`, `limit`
+- **API**: `GET /rest/api/3/user/search`
+
+---
+
+## Group Management
+
+### group_list
+
+List all groups in the Jira instance.
+
+- **Parameters**: `start`, `limit`
+- **API**: `GET /rest/api/3/group/bulk`
+
+### group_get_members
+
+List members of a group.
+
+- **Parameters**: `group_name` (string, required), `start`, `limit`
+- **API**: `GET /rest/api/3/group/member`
+
+### group_create
+
+Create a new group. *Mutating.*
+
+- **Parameters**: `name` (string, required)
+- **API**: `POST /rest/api/3/group`
+
+### group_add_user
+
+Add a user to a group. *Mutating.*
+
+- **Parameters**: `group_name`, `account_id` (both string, required)
+- **API**: `POST /rest/api/3/group/user`
+
+### group_remove_user
+
+Remove a user from a group. *Mutating.*
+
+- **Parameters**: `group_name`, `account_id` (both string, required)
+- **API**: `DELETE /rest/api/3/group/user`
+
+### group_delete
+
+Delete a group. *Mutating.*
+
+- **Parameters**: `group_name` (string, required)
+- **API**: `DELETE /rest/api/3/group`

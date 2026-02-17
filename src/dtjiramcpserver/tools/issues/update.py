@@ -26,6 +26,7 @@ class IssueUpdateTool(BaseTool):
     name = "issue_update"
     category = "issues"
     description = "Update fields on an existing Jira issue"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

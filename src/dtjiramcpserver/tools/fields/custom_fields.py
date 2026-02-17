@@ -134,6 +134,7 @@ class FieldCreateTool(BaseTool):
     name = "field_create"
     category = "fields"
     description = "Create a new custom field in Jira"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {
@@ -258,6 +259,7 @@ class FieldUpdateTool(BaseTool):
     name = "field_update"
     category = "fields"
     description = "Update an existing custom field"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

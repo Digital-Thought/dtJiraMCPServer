@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Project management tools (5): `project_list`, `project_get`, `project_create`, `project_update`, `project_delete`
+- Lookup tools (3): `issue_type_list`, `priority_list`, `user_search`
+- Group management tools (6): `group_list`, `group_get_members`, `group_create`, `group_add_user`, `group_remove_user`, `group_delete`
+- Read-only mode via `JIRA_READ_ONLY` environment variable — restricts server to 38 non-mutating tools
+- `mutates` attribute on BaseTool for tool classification (read-only vs mutating)
+- `validate_project_key()` validator for Jira project key format
+- Unit tests for all new tools and read-only mode (445 tests, 93% coverage)
+
 ## [0.1.0] - 2026-02-17
 
 ### Added

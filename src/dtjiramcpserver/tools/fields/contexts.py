@@ -136,6 +136,7 @@ class FieldAddContextTool(BaseTool):
     name = "field_add_context"
     category = "fields"
     description = "Add a context to a custom field"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

@@ -18,6 +18,7 @@ class JiraConfig(BaseModel):
     instance_url: str = Field(..., description="Atlassian Cloud instance URL")
     user_email: str = Field(..., description="Atlassian account email for authentication")
     api_token: str = Field(..., repr=False, description="Atlassian API token")
+    read_only: bool = Field(default=False, description="When true, only read-only tools are available")
 
     @field_validator("instance_url")
     @classmethod

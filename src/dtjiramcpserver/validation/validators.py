@@ -14,6 +14,9 @@ from dtjiramcpserver.exceptions import InputValidationError
 # Jira issue key pattern: PROJECT-123
 _ISSUE_KEY_PATTERN = re.compile(r"^[A-Z][A-Z0-9_]+-\d+$")
 
+# Jira project key pattern: 2-10 uppercase alphanumeric, starting with a letter
+_PROJECT_KEY_PATTERN = re.compile(r"^[A-Z][A-Z0-9]{1,9}$")
+
 
 def validate_required(params: dict[str, Any], *field_names: str) -> None:
     """Validate that all specified fields are present and non-empty.
@@ -158,6 +161,41 @@ def validate_issue_key(value: Any, field_name: str = "issue_key") -> str:
     if not _ISSUE_KEY_PATTERN.match(key):
         raise InputValidationError(
             message=f"Parameter '{field_name}' must match format PROJECT-123 (got '{value}')",
+            field=field_name,
+            reason="invalid_format",
+        )
+
+    return key
+
+
+def validate_project_key(value: Any, field_name: str = "key") -> str:
+    """Validate a Jira project key format (2-10 uppercase alphanumeric, starting with letter).
+
+    Args:
+        value: The value to validate.
+        field_name: Name of the parameter (for error messages).
+
+    Returns:
+        The validated, uppercase project key.
+
+    Raises:
+        InputValidationError: If the format is invalid.
+    """
+    if not isinstance(value, str) or not value.strip():
+        raise InputValidationError(
+            message=f"Parameter '{field_name}' must be a non-empty string",
+            field=field_name,
+            reason="invalid_type",
+        )
+
+    key = value.strip().upper()
+
+    if not _PROJECT_KEY_PATTERN.match(key):
+        raise InputValidationError(
+            message=(
+                f"Parameter '{field_name}' must be 2-10 uppercase alphanumeric "
+                f"characters starting with a letter (got '{value}')"
+            ),
             field=field_name,
             reason="invalid_format",
         )

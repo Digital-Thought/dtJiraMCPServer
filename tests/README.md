@@ -4,7 +4,7 @@
 
 ```
 tests/
-├── conftest.py                         # Shared pytest fixtures
+├── conftest.py                         # Shared pytest fixtures and EXPECTED_TOOL_COUNT
 ├── unit/                               # Unit tests (no external dependencies)
 │   ├── test_config.py                  # Configuration model validation
 │   ├── test_errors.py                  # Error classification and mapping
@@ -16,13 +16,17 @@ tests/
 │   ├── test_tool_registry.py          # Tool registry auto-discovery
 │   ├── test_meta_tools.py             # Meta-tool implementations
 │   ├── test_server.py                  # MCP server orchestration
+│   ├── test_read_only_mode.py         # JIRA_READ_ONLY mode filtering
 │   └── tools/                          # Tool-specific unit tests
 │       ├── test_issues.py             # Issue management tools (7 tools)
 │       ├── test_servicedesk.py        # Service desk tools (10 tools)
 │       ├── test_requesttypes.py       # Request type tools (6 tools)
 │       ├── test_fields.py            # Field management tools (10 tools)
 │       ├── test_workflows.py          # Workflow management tools (8 tools)
-│       └── test_phase8.py            # KB, SLA, and asset tools (4 tools)
+│       ├── test_phase8.py            # KB, SLA, and asset tools (4 tools)
+│       ├── test_projects.py           # Project management tools (5 tools)
+│       ├── test_lookup.py            # Lookup tools (3 tools)
+│       └── test_groups.py            # Group management tools (6 tools)
 └── integration/                        # Integration tests (require Jira credentials)
     └── test_live_tools.py             # Live API tests across all tool categories
 ```
@@ -85,12 +89,16 @@ Minimum 80% coverage on core modules (currently 93%). Security-critical function
 
 | Category | Tests |
 |----------|-------|
-| Core infrastructure | 142 |
+| Core infrastructure | 144 |
 | Issue tools | 38 |
 | Service desk tools | 38 |
 | Request type tools | 25 |
 | Field management tools | 42 |
 | Workflow tools | 36 |
 | KB/SLA/Asset tools | 17 |
+| Project tools | 30 |
+| Lookup tools | 20 |
+| Group tools | 35 |
+| Read-only mode | 10 |
 | Integration | 2 |
-| **Total** | **340** |
+| **Total** | **445** |

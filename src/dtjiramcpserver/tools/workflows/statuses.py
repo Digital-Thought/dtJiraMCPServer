@@ -252,6 +252,7 @@ class StatusCreateTool(BaseTool):
     name = "status_create"
     category = "workflows"
     description = "Create one or more new statuses"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {

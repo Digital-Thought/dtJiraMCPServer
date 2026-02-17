@@ -117,6 +117,7 @@ class BaseTool(ABC):
     category: str
     description: str
     input_schema: dict[str, Any]
+    mutates: bool = False
 
     def __init__(
         self,

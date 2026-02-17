@@ -69,7 +69,8 @@ export JIRA_USER_EMAIL=user@example.com
 export JIRA_API_TOKEN=your-api-token
 
 # Optional
-export LOG_LEVEL=INFO  # DEBUG, INFO, WARNING, ERROR
+export LOG_LEVEL=INFO          # DEBUG, INFO, WARNING, ERROR
+export JIRA_READ_ONLY=false    # Set to true to restrict to read-only tools
 ```
 
 On Windows, use `set` instead of `export`:
@@ -142,7 +143,7 @@ Once the server is running via an MCP client, ask the LLM:
 
 > "List all available Jira tools"
 
-The LLM should invoke `list_available_tools` and return a categorised listing of all 47 tools.
+The LLM should invoke `list_available_tools` and return a categorised listing of all 61 tools (or 38 in read-only mode).
 
 ## Atlassian API Token
 

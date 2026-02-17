@@ -14,7 +14,7 @@ The server provides two meta-tools that enable the LLM to discover and learn too
 
 ### list_available_tools
 
-Returns all 47 tools grouped by category. The LLM typically calls this first to understand what's available.
+Returns all tools grouped by category (61 in normal mode, 38 in read-only mode). The LLM typically calls this first to understand what's available.
 
 ### get_tool_guide
 
@@ -122,6 +122,47 @@ Workflow, status, and transition management.
 |------|-------------|
 | `assets_get_workspaces` | List available asset workspace IDs |
 
+### Projects (5 tools)
+
+Project management operations.
+
+| Tool | Description |
+|------|-------------|
+| `project_list` | List all projects with filtering |
+| `project_get` | Get full project details by key |
+| `project_create` | Create a new project |
+| `project_update` | Update project fields |
+| `project_delete` | Delete a project (with optional undo) |
+
+### Lookup (3 tools)
+
+Reference data lookups for issue types, priorities, and users.
+
+| Tool | Description |
+|------|-------------|
+| `issue_type_list` | List all available issue types |
+| `priority_list` | List all available priorities |
+| `user_search` | Search for users by name or email |
+
+### Groups (6 tools)
+
+Group management and membership.
+
+| Tool | Description |
+|------|-------------|
+| `group_list` | List all groups |
+| `group_get_members` | List members of a group |
+| `group_create` | Create a new group |
+| `group_add_user` | Add a user to a group |
+| `group_remove_user` | Remove a user from a group |
+| `group_delete` | Delete a group |
+
+## Read-Only Mode
+
+Set `JIRA_READ_ONLY=true` to restrict the server to read-only tools only. This prevents any tool that creates, modifies, or deletes resources from being registered.
+
+In read-only mode, 38 tools are available (all list/get/search tools). The 23 mutating tools (create, update, delete, add, remove operations) are excluded.
+
 ## Pagination
 
 All list operations support pagination with consistent parameters:
@@ -182,4 +223,4 @@ Tool availability depends on your Atlassian account permissions:
 | Any user | Issue search, issue get, service desk list |
 | Project member | Issue create, update, transition, delete |
 | Service desk agent | Queue management, customer management |
-| Jira Administrator | Field management, workflow management, screen management |
+| Jira Administrator | Field management, workflow management, screen management, project management, group management |

@@ -8,6 +8,7 @@ from unittest.mock import AsyncMock
 import pytest
 
 from dtjiramcpserver.client.pagination import PaginatedResponse
+from tests.conftest import EXPECTED_TOOL_COUNT
 from dtjiramcpserver.tools.fields.contexts import (
     FieldAddContextTool,
     FieldGetContextsTool,
@@ -658,5 +659,4 @@ class TestFieldToolRegistration:
 
     def test_tool_count_includes_fields(self, tool_registry: Any) -> None:
         """Total tool count includes field tools."""
-        # meta (2) + issues (7) + servicedesk (10) + requesttypes (6) + fields (10) + workflows (8) + kb (1) + sla (2) + assets (1) = 47
-        assert tool_registry.tool_count == 47
+        assert tool_registry.tool_count == EXPECTED_TOOL_COUNT

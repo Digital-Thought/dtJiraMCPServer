@@ -201,6 +201,7 @@ class ScreenAddFieldTool(BaseTool):
     name = "screen_add_field"
     category = "fields"
     description = "Add a field to a screen tab"
+    mutates = True
     input_schema: dict[str, Any] = {
         "type": "object",
         "properties": {
