@@ -21,6 +21,7 @@ docker build -t dtjiramcpserver:latest .
 ```bash
 docker run -i --rm \
   --read-only \
+  -v dtjiramcp_data:/_working \
   --security-opt=no-new-privileges \
   --cap-drop=ALL \
   -e JIRA_INSTANCE_URL=https://your-domain.atlassian.net \
@@ -36,6 +37,7 @@ The server communicates via stdin/stdout using the MCP stdio transport. It is de
 | Flag | Purpose |
 |------|---------|
 | `--read-only` | Prevents writes to the container filesystem |
+| `-v dtjiramcp_data:/_working` | Persistent volume for framework keystore and logs |
 | `--security-opt=no-new-privileges` | Prevents privilege escalation |
 | `--cap-drop=ALL` | Drops all Linux capabilities |
 
@@ -101,6 +103,7 @@ Add to your Claude Desktop configuration file:
       "args": [
         "run", "-i", "--rm",
         "--read-only",
+        "-v", "dtjiramcp_data:/_working",
         "--security-opt=no-new-privileges",
         "--cap-drop=ALL",
         "-e", "JIRA_INSTANCE_URL=https://your-domain.atlassian.net",

@@ -40,6 +40,7 @@ docker build -t dtjiramcpserver:latest .
 
 docker run -i --rm \
   --read-only \
+  -v dtjiramcp_data:/_working \
   --security-opt=no-new-privileges \
   --cap-drop=ALL \
   -e JIRA_INSTANCE_URL=https://your-domain.atlassian.net \
@@ -87,6 +88,7 @@ See [docs/installation.md](docs/installation.md) for detailed setup instructions
       "args": [
         "run", "-i", "--rm",
         "--read-only",
+        "-v", "dtjiramcp_data:/_working",
         "--security-opt=no-new-privileges",
         "--cap-drop=ALL",
         "-e", "JIRA_INSTANCE_URL=https://your-domain.atlassian.net",
