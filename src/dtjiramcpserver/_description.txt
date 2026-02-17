@@ -1,0 +1,1 @@
+MCP Server for Jira Cloud and JSM Cloud administration via natural language

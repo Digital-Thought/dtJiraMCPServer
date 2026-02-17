@@ -1,0 +1,13 @@
+# dtJiraMCPServer - Production Dependencies
+
+# Application Framework
+dtPyAppFramework==4.3.0
+
+# MCP Server
+mcp>=1.25.0
+
+# HTTP Client
+httpx>=0.27.0
+
+# Data Validation
+pydantic>=2.5.0
